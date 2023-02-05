@@ -9,7 +9,7 @@ const mediaCategory = {
 };
 
 const backdropPath = (imgEndpoint) =>
-	`https://image.tmdb.org/t/p/orignal${imgEndpoint}`;
+	`https://image.tmdb.org/t/p/original${imgEndpoint}`;
 
 const posterPath = (imgEndpoint) =>
 	`https://image.tmdb.org/t/p/w500${imgEndpoint}`;
