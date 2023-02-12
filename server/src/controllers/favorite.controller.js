@@ -12,10 +12,11 @@ const addFavorite = async (req, res) => {
 			responseHandler.ok(res, isFavorite);
 		}
 
-		const favorite = await favoriteModel({
+		const favorite = new favoriteModel({
 			...req.body,
 			user: req.user.id,
 		});
+		await favorite.save();
 
 		responseHandler.created(res, favorite);
 	} catch {

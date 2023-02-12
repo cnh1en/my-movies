@@ -31,7 +31,7 @@ const userSlice = createSlice({
 		},
 
 		setAddFavorite: (state, action) => {
-			state.listFavorites = [...action.payload, ...state.listFavorites];
+			state.listFavorites = [...state.listFavorites, ...action.payload];
 		},
 	},
 });
