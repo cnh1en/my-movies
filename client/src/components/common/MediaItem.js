@@ -32,9 +32,9 @@ const MediaItem = ({ mediaType, media }) => {
 		);
 
 		if (mediaType === tmdbConfigs.mediaType.movie) {
-			setReleaseDate(media.release_date.split('-')[0]);
+			setReleaseDate(media.release_date?.split('-')[0]);
 		} else {
-			setReleaseDate(media.first_air_date.split('-')[0]);
+			setReleaseDate(media.first_air_date?.split('-')[0]);
 		}
 
 		setRate(media.vote_average || media.mediaRate);
@@ -43,9 +43,9 @@ const MediaItem = ({ mediaType, media }) => {
 	return (
 		<Link
 			to={
-				mediaType !== 'people'
-					? routesGen.mediaDetail(mediaType, media.id || media.mediaId)
-					: routesGen.person(media.id)
+				mediaType === 'people'
+					? routesGen.person(media.id)
+					: routesGen.mediaDetail(mediaType, media.id || media.mediaId)
 			}
 		>
 			<Box

@@ -10,9 +10,11 @@ const userSlice = createSlice({
 		setUser: (state, action) => {
 			if (action.payload === null) {
 				localStorage.removeItem('access_token');
+				localStorage.removeItem('isLogged');
 			} else {
 				if (action.payload.token) {
 					localStorage.setItem('access_token', action.payload.token);
+					localStorage.setItem('isLogged', true);
 				}
 			}
 

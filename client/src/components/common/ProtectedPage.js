@@ -7,10 +7,13 @@ const ProtectedPage = ({ children }) => {
 	const { user } = useSelector((state) => state.user);
 
 	useEffect(() => {
-		dispatch(setAuthModalOpen(!user));
+		const isLogged = localStorage.getItem('isLogged');
+		if (!isLogged) {
+			dispatch(setAuthModalOpen(!user));
+		}
 	}, [user, dispatch]);
 
-	return <div>{user ? children : null}</div>;
+	return user ? children : null;
 };
 
 export default ProtectedPage;

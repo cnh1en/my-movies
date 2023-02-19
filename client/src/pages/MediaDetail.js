@@ -34,6 +34,7 @@ import BackdropSlide from '../components/common/BackdropSlide';
 import PosterSlice from '../components/common/PosterSlice';
 import RecommendSlide from '../components/common/RecommendSlide';
 import MediaSlide from '../components/common/MediaSlide';
+import MediaReview from '../components/common/MediaReview';
 
 const MediaDetail = () => {
 	const { mediaType, mediaId } = useParams();
@@ -68,11 +69,11 @@ const MediaDetail = () => {
 			mediaRate: media.vote_average,
 		};
 
-		const { response, err } = await favoriteApi.add(body);
+		const { response, error } = await favoriteApi.add(body);
 
 		setOnRequest(false);
 
-		if (err) toast.error(err.message);
+		if (error) toast.error(error.message);
 		if (response) {
 			dispatch(setAddFavorite([response]));
 			setIsFavorite(true);
@@ -107,6 +108,7 @@ const MediaDetail = () => {
 	};
 
 	useEffect(() => {
+		window.scrollTo(0, 0);
 		const getMedia = async () => {
 			dispatch(setGlobalLoading(true));
 
@@ -213,8 +215,8 @@ const MediaDetail = () => {
 								>
 									{`${media.title || media.name} ${
 										mediaType === tmdbConfigs.mediaType.movie
-											? media.release_date.split('-')[0]
-											: media.first_air_date.split('-')[0]
+											? media.release_date?.split('-')[0]
+											: media.first_air_date?.split('-')[0]
 									}`}
 								</Typography>
 								{/* TITLE */}
@@ -316,6 +318,11 @@ const MediaDetail = () => {
 				{/* MEDIA BACKDROP */}
 
 				{/* REVIEWS */}
+				<MediaReview
+					reviews={media.reviews}
+					media={media}
+					mediaType={mediaType}
+				/>
 				{/* REVIEWS */}
 
 				{/* MEDIA POSTERS */}

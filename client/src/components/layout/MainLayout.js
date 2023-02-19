@@ -33,7 +33,6 @@ const MainLayout = () => {
 	useEffect(() => {
 		const getFavorites = async () => {
 			const { response, error } = await favoriteApi.getList();
-			console.log('[LOG] ~ getFavorites ~ response', response);
 			if (response && response?.length > 0) dispatch(setAddFavorite(response));
 			if (error) toast.error(error.message);
 		};
