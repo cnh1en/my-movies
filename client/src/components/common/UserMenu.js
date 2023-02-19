@@ -68,7 +68,7 @@ const UserMenu = () => {
 							}}
 							onClick={() => dispatch(setUser(null))}
 						>
-							<LogoutOutlinedIcon />
+							<LogoutOutlinedIcon sx={{ mr: '32px' }} />
 							<ListItemText
 								disableTypography
 								primary={
