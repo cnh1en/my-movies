@@ -52,6 +52,7 @@ const Topbar = () => {
 	const { user } = useSelector((state) => state.user);
 	const { appState } = useSelector((state) => state.appState);
 	const { themeMode } = useSelector((state) => state.themeMode);
+	const { globalLoading } = useSelector((state) => state.globalLoading);
 
 	const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -145,18 +146,20 @@ const Topbar = () => {
 						</Stack>
 						{/* MAIN MENU */}
 						{/* USER MENU */}
-						<Stack spacing={3} direction="row" alignItems="center">
-							{!user ? (
-								<Button
-									variant="contained"
-									onClick={() => dispatch(setAuthModalOpen(true))}
-								>
-									login
-								</Button>
-							) : (
-								<UserMenu />
-							)}
-						</Stack>
+						{!globalLoading ? (
+							<Stack spacing={3} direction="row" alignItems="center">
+								{!user ? (
+									<Button
+										variant="contained"
+										onClick={() => dispatch(setAuthModalOpen(true))}
+									>
+										login
+									</Button>
+								) : (
+									<UserMenu />
+								)}
+							</Stack>
+						) : null}
 						{/* USER MENU */}
 					</Toolbar>
 				</AppBar>
